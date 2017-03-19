@@ -25,14 +25,15 @@ var nodemon = require('gulp-nodemon');
 
 gulp.task('gulpSynModify', function() {
     nodemon({
-        script: 'bin/www ',
-    })
+        script: 'bin/www',
+    });
     console.log("nodemon");
 });
 
 
 gulp.task('watch',['gulpSynModify'],function(){
-	gulp.watch("routes/*.js",['gulpSynModify']);
+	//gulp.watch("routes/*.js",['gulpSynModify']);
+	 gulp.watch("routes/*.js");
 });
 
 

@@ -186,3 +186,22 @@ var rtdata = instance.get('https://www.baidu.com', {
 
 console.log(rtdata);
 
+
+//axios({})
+
+//axios({"baseURL":"http://www.gov.cn"});
+   // .get("/premier/2017-03/30/content_5182223.htm");
+// .then((res) =>
+    // {
+    //     console.log(res);
+    // })
+    // .catch ((err) =>{
+    //  console.log(err);
+    // });
+
+// var request = require('request');
+// request('http://www.nonobank.com', function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//         console.log(body) // 打印google首页
+//     }
+// })

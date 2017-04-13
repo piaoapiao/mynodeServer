@@ -58,10 +58,6 @@ function gethnie(){
 
 
 function login(req, res, next) {
-    // res.type('text/plain');
-    // res.staus(200);
-    // res.send("login ok");
-    //requestbaidu(res);
 
     axios.all([getNono(),gethnie()])
         .then(axios.spread( function(baidu,hnie){
@@ -70,26 +66,59 @@ function login(req, res, next) {
             //  console.log(baidu.data);
             // console.log(typeof baidu);
             console.log("here");
-            res.type('text/plain');
+            // type('text/plain');
             // res.status(200);
             //res.send(baidu.data);
-           // res.send(hnie.data);
+            // res.send(hnie.data);
 
             //res.send(hnie.data) + baidu.data);
 
-            res.send(hnie.data+ baidu.data);
+            //res.send(hnie.data+ baidu.data);
 
+            var content = {"name":"guodong"};
+            res.json(content);
     }))
         .catch(function (e) {
             console.log(e);
             console.log("Promise Rejected");
         });
-
-    // res.type('text/plain');
-    // res.staus(200);
-    // res.send("login ok");
 }
 
+
+// function login(req, res, next) {
+//
+//     axios.all([getNono(),gethnie()])
+//         .then(function(result){
+//             console.log("here");
+//             res.type('text/plain');
+//             // res.status(200);
+//             //res.send(baidu.data);
+//             // res.send(hnie.data);
+//             // res.send(result[0].data);
+//             res.send(result[1].data);
+//             // res.send(result[0].data + result[1].data);
+//         })
+//         .catch(function (e) {
+//             console.log(e);
+//             console.log("Promise Rejected");
+//         });
+// }
+
+
+// function login(req, res, next) {
+//
+//     axios.all([getNono(),gethnie()])
+//         .then(function(nono,hn){
+//             console.log("here");
+//             res.type('text/plain');
+//             res.send(nono.data);
+//
+//         })
+//         .catch(function (e) {
+//             console.log(e);
+//             console.log("Promise Rejected");
+//         });
+// }
 
 module.exports = {
   login:login

@@ -10,6 +10,8 @@ var  axios = require("axios");
 var urlencode = require("urlencode");
 var querystring = require('querystring');
 
+var formidable = require('formidable')
+
 
 // var instance = axios.create({data: {
 //     request: '{"sendType":"3","mobileNumber":"13262591961"}'
@@ -108,7 +110,31 @@ function postUnifi(res)
 // }
 
 
-module.exports = {
-    login:login
+function saveCrashLog(request,res)
+{
+    //console.log(JSON.stringify(request.body));
+    // res.send(request.url);
+    //res.send(request.body);
+    // res.send('req.body: ' + JSON.stringify(request.body))
+
+    var form = new formidable.IncomingForm();
+
+    form.parse(request, function(err, fields, files) {
+        // res.writeHead(200, {'content-type': 'text/plain'});
+        // res.write('received upload:nn');
+         console.log(fields);
+
+         var userId = fields["userId"];
+         console.log("userId:" + userId);
+        res.send("post data" +   JSON.stringify(fields));
+       // res.send(fields);
+       // res.end(util.inspect({fields: fields, files: files}));
+    });
+
 }
 
+
+
+module.exports = {
+    saveCrashLog:saveCrashLog
+}

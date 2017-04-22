@@ -20,12 +20,12 @@ var app = express();
 //     res.end(JSON.stringify(req.body, null, 2))
 // });
 
-var jsonParser = bodyParser.json();
+// var jsonParser = bodyParser.json();
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+// /var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
  //app.use(bodyParser.json({ type: 'text/plain' }));   // application/json   需要指定类型     ;charset=UTF-8
-app.use(bodyParser.json({ type: 'application/json' }));
+// app.use(bodyParser.json({ type: 'application/json' }));
 
 // app.use(bodyParser.json({ type: 'text2/plain' }))
 

@@ -123,36 +123,30 @@ function saveCrashLog(req,res)
 
     // console.log(res.body);
 
-    res.setHeader('Content-Type', 'application/json');
+    // res.setHeader('Content-Type', 'application/json');
 
-    console.log(req.body);
+   //  console.log(req.body);
+   //
+   //  req.body.test = "re";
+   //   //res.body.test = "ggg";
+   //
+   // // req.body["test2"] = "rer";
+   //
+   //  res.send(req.body);
+   //
+   //   // res.send("req.body");
+   //
+   //  // request.rawBody
 
-    req.body.test = "re";
-     //res.body.test = "ggg";
+    var form = new formidable.IncomingForm();
 
-   // req.body["test2"] = "rer";
+    form.parse(req, function(err, fields, files) {
+         // res.writeHead(200, {'content-type': 'text/plain'});
+        res.setHeader('Content-Type', 'application/json');
+         console.log(fields);
+        res.send(fields);
 
-    res.send(req.body);
-
-     // res.send("req.body");
-
-    // request.rawBody
-
-   // var form = new formidable.IncomingForm();
-
-    // form.parse(request, function(err, fields, files) {
-    //     // res.writeHead(200, {'content-type': 'text/plain'});
-    //     // res.write('received upload:nn');
-    //      console.log(fields);
-    //
-    //     res.send(request.body);
-    //
-    //      var userId = fields["userId"];
-    //      console.log("userId:" + userId);
-    //     //res.send("post data" +   JSON.stringify(fields));
-    //    // res.send(fields);
-    //    // res.end(util.inspect({fields: fields, files: files}));
-    // });
+    });
 
 }
 

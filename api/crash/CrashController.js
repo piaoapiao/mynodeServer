@@ -123,7 +123,18 @@ function saveCrashLog(req,res)
 
     // console.log(res.body);
 
-     res.send("req.body");
+    res.setHeader('Content-Type', 'application/json');
+
+    console.log(req.body);
+
+    req.body.test = "re";
+     //res.body.test = "ggg";
+
+   // req.body["test2"] = "rer";
+
+    res.send(req.body);
+
+     // res.send("req.body");
 
     // request.rawBody
 

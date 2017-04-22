@@ -24,20 +24,23 @@ var jsonParser = bodyParser.json();
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.use(bodyParser.json({ type: 'text/plain' }))
+ //app.use(bodyParser.json({ type: 'text/plain' }));   // application/json   需要指定类型     ;charset=UTF-8
+app.use(bodyParser.json({ type: 'application/json' }));
+
+// app.use(bodyParser.json({ type: 'text2/plain' }))
 
 // app.post('/api/users', jsonParser, function (req, res) {
 //     if (!req.body) return res.sendStatus(400)
 //     // create user in req.body
 // })
 
-app.post('/api/users', jsonParser, function (req, res) {
-    if (!req.body) return res.sendStatus(400)
-    console.log("------");
-    console.log(req.body);
-    res.send("login ok:"+req.body);
-    // create user in req.body
-});
+// app.post('/api/users', jsonParser, function (req, res) {
+//     if (!req.body) return res.sendStatus(400)
+//     console.log("------");
+//     console.log(req.body);
+//     res.send("login ok:"+req.body);
+//     // create user in req.body
+// });
 
 
 // app.post('/login', urlencodedParser, function (req, res) {

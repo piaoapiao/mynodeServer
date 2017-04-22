@@ -110,26 +110,38 @@ function postUnifi(res)
 // }
 
 
-function saveCrashLog(request,res)
+function saveCrashLog(req,res)
 {
     //console.log(JSON.stringify(request.body));
     // res.send(request.url);
     //res.send(request.body);
     // res.send('req.body: ' + JSON.stringify(request.body))
 
-    var form = new formidable.IncomingForm();
+    //console.log(request.rawBody);
 
-    form.parse(request, function(err, fields, files) {
-        // res.writeHead(200, {'content-type': 'text/plain'});
-        // res.write('received upload:nn');
-         console.log(fields);
+    // console.log(req.body);
 
-         var userId = fields["userId"];
-         console.log("userId:" + userId);
-        res.send("post data" +   JSON.stringify(fields));
-       // res.send(fields);
-       // res.end(util.inspect({fields: fields, files: files}));
-    });
+    // console.log(res.body);
+
+     res.send("req.body");
+
+    // request.rawBody
+
+   // var form = new formidable.IncomingForm();
+
+    // form.parse(request, function(err, fields, files) {
+    //     // res.writeHead(200, {'content-type': 'text/plain'});
+    //     // res.write('received upload:nn');
+    //      console.log(fields);
+    //
+    //     res.send(request.body);
+    //
+    //      var userId = fields["userId"];
+    //      console.log("userId:" + userId);
+    //     //res.send("post data" +   JSON.stringify(fields));
+    //    // res.send(fields);
+    //    // res.end(util.inspect({fields: fields, files: files}));
+    // });
 
 }
 

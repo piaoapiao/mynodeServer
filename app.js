@@ -13,11 +13,23 @@ var path = require('path');
 
 var app = express();
 
-// app.use(morgan("short"));
+app.use(morgan("short"));
+
+app.use(function (req, res, next) {
+    // if (req.clientIp === '::1') { // local test, do mock
+    //     req.clientIp = randomIp('218.1.33.190', 16, 24);
+    // } else if (/^::ffff:/.test(req.clientIp)) { // only support ipv4 now
+    //     req.clientIp = req.clientIp.replace(/^::ffff:/, '');
+    // }
+    console.log(req.remoteAddress);
+    next();
+});
+
+// app.use(morgan('combined'));
 
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'));
 
-app.use(morgan('common', {stream: accessLogStream}));
+app.use(morgan('combined', {stream: accessLogStream}));
 
 
 
@@ -121,6 +133,8 @@ app.set('view engine', 'jade');
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//   http://192.168.35.6:3000/images/snow.jpg  图片地址
 
 // app.use(bodyParser.json());
 

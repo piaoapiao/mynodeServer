@@ -10,6 +10,8 @@ var controller = require('./CrashController');
 
 // http://localhost:3000/crash/saveCrashLog
 
-router.post('/saveCrashLog', controller.saveCrashLog);
+//router.post('/saveCrashLog', controller.saveCrashLog);
+
+router.get('/saveCrashLog', controller.saveCrashLog);
 
 module.exports = router;

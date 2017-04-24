@@ -139,7 +139,9 @@ function saveCrashLog(req,res)
    //  // request.rawBody
 
 
-    res.send(req.body);
+    //res.send(req.body);
+
+    res.send(req.query.userid);
 
     // var form = new formidable.IncomingForm();
     //

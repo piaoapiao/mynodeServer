@@ -1,0 +1,2 @@
+::1 - - [24/Apr/2017:05:40:11 +0000] "POST /crash/saveCrashLog HTTP/1.1" 200 35
+::1 - - [24/Apr/2017:05:40:17 +0000] "POST /crash/saveCrashLog HTTP/1.1" 200 39

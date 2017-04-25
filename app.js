@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+// var upload = require('./app/upload');
+
 var fs = require('fs');
 var path = require('path');
 
@@ -105,7 +107,7 @@ app.use(cookieParser());
 // app.use(bodyParser.urlencoded({
 //     extended: false});
 
-app.use('/crash', require('./api/crash'));
+
 
 // app.use(bodyParser.urlencoded({
 //     extended: false,
@@ -161,6 +163,9 @@ app.use('/users', users);
 
 app.use('/user', require('./api/user'));
 
+app.use('/crash', require('./api/crash'));
+
+app.use('/fileupload', require("./api/upload"));
 
 
 

@@ -48,11 +48,11 @@ var uploadfile = function(req, res) {
     form.parse(req, (err, fields, files) => {
         console.log(fields);
         console.log(files);
-    if (err) {
-        throw err;
-    }
-
+        if (err) {
+             throw err;
+        }
     });
+
     res.send("ok");
 };
 

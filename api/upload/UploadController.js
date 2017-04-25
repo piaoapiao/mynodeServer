@@ -9,8 +9,13 @@
 
 var fs = require('fs');
 var os = require('os');
+var path = require('path');
 var formidable = require('formidable')
-// var multiparty = require('multiparty');
+var util = require('util');
+
+var multiparty = require('multiparty');
+
+var Busboy = require('busboy');
 
 var handleFile = function(filename, file, targetDir) {
     var targetFile = targetDir + filename;
@@ -33,50 +38,87 @@ var isDefined = function(str) {
     return (typeof str != 'undefined' && null != str && '' != str);
 }
 
-// Parse form and handle files and fields.
+// //formidable Parse form and handle files and fields.
+// var uploadfile = function(req, res) {
+//     console.log("here");
+//
+//     // var upfile = req.files.upfile;
+//
+//     const form = new formidable.IncomingForm();
+//    // form.uploadDiros. = os.tmpDir();//上传文件的保存路径
+//     //form.uploadDir = os.tmpDir();//上传文件的保存路径
+//     form.uploadDir = ".";//上传文件的保存路径
+//     form.keepExtensions = true;//保存扩展名
+//     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
+//     form.parse(req, (err, fields, files) => {
+//         console.log(fields);
+//         console.log(files);
+//         if (err) {
+//              throw err;
+//         }
+//     });
+//
+//     res.send("ok");
+// };
+//
+// //  multiparty upload file
+// var uploadfile = function(req, res) {
+//     console.log("here");
+//
+//     var form = new multiparty.Form();
+//
+//     //设置编辑
+//     form.encoding = 'utf-8';
+//     //设置文件存储路径
+//     form.uploadDir = "upload/";
+//     //设置单文件大小限制
+//     form.maxFilesSize = 2 * 1024 * 1024;
+//
+//     form.parse(req, function (err, fields, files) {
+//         res.writeHead(200, {'content-type': 'text/plain'});
+//         res.write('received upload:\n\n');
+//         res.end(util.inspect({fields: fields, files: files}));
+//     });
+//     //res.send("ok");
+// };
+
+//  multiparty upload file
 var uploadfile = function(req, res) {
-    console.log("here");
 
-    // var upfile = req.files.upfile;
+    var busboy = new Busboy({ headers: req.headers });
 
-    const form = new formidable.IncomingForm();
-   // form.uploadDiros. = os.tmpDir();//上传文件的保存路径
-    //form.uploadDir = os.tmpDir();//上传文件的保存路径
-    form.uploadDir = ".";//上传文件的保存路径
-    form.keepExtensions = true;//保存扩展名
-    form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
-    form.parse(req, (err, fields, files) => {
-        console.log(fields);
-        console.log(files);
-        if (err) {
-             throw err;
-        }
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+
+        console.log(__dirname);
+
+        console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+
+      //  var saveTo = path.join(__dirname, filename);
+        var saveTo = path.join("..", filename);   // . 指向 项目目录
+        console.log(saveTo)
+        file.pipe(fs.createWriteStream(saveTo));
+
+
+        // file.on('data', function(data) {
+        //     console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+        // });
+        // file.on('end', function() {
+        //     console.log('File [' + fieldname + '] Finished');
+        // });
     });
-
-    res.send("ok");
+    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+      //  console.log('Field [' + fieldname + ']: value: ' + val);
+          console.log('field');
+    });
+    busboy.on('finish', function() {
+        console.log('Done parsing form!');
+        res.send("upload ok");
+        //res.writeHead(303, { Connection: 'close', Location: '/' });
+        //res.end();
+    });
+    req.pipe(busboy);
 };
 
-
-
-
-    // var result = { files: [], fields: [] };
-    //
-    // req.busboy.on('file', function (fieldname, file, filename) {
-    //     if(isDefined(filename)) {
-    //         result.files.push({ name: filename});
-    //         //handleFile(filename, file, os.tmpdir());
-    //         handleFile(filename, file, os.tmpdir());
-    //     }
-    // });
-    // req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
-    //     console.log('Field received: '+key+' = '+value);
-    //     result.fields.push({ 'name': key, val: value });
-    // });
-    //
-    // req.busboy.on('finish', function() {
-    //     res.render('afterUpload', result);
-    // });
-    // req.pipe(req.busboy);
 
 
 

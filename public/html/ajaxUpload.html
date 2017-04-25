@@ -11,14 +11,27 @@
 <script type="text/javascript" >
 
 //  XMLHttpRequest   FormData 上传文件
+//function doUpload() {
+//    console.log("test");
+//    var oReq = new XMLHttpRequest();
+//    //oReq.open("POST", "http://localhost.charlesproxy.com:3000/fileupload");
+//    oReq.open("POST", "http://localhost:3000/fileupload");
+//    var formData = new FormData($("#uploadForm")[0]);
+//    oReq.send(formData)
+//    console.log("upload file");
+//}
+
+
 function doUpload() {
     console.log("test");
-    var oReq = new XMLHttpRequest();
-    //oReq.open("POST", "http://localhost.charlesproxy.com:3000/fileupload");
-    oReq.open("POST", "http://localhost:3000/fileupload");
-    var formData = new FormData($("#uploadForm")[0]);
-    oReq.send(formData)
-    console.log("upload file");
+    $.ajax
+
+//    var oReq = new XMLHttpRequest();
+//    //oReq.open("POST", "http://localhost.charlesproxy.com:3000/fileupload");
+//    oReq.open("POST", "http://localhost:3000/fileupload");
+//    var formData = new FormData($("#uploadForm")[0]);
+//    oReq.send(formData)
+//    console.log("upload file");
 }
 
 

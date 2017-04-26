@@ -15,6 +15,11 @@ function saveCrashLog(req,res)
 
     // res.setHeader('Content-Type', 'application/json');
 
+    winston.add(winston.transports.File, {
+        filename: './log/error.log',
+        handleExceptions: true,
+        humanReadableUnhandledException: true
+    });
     winston.log('info',  req.method.toUpperCase(),req.url,JSON.stringify(req.body));
 
     // logger.error()

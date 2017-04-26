@@ -39,48 +39,48 @@ var isDefined = function(str) {
 }
 
 // //formidable Parse form and handle files and fields.
-var uploadfile = function(req, res) {
-    console.log("here");
-
-    // var upfile = req.files.upfile;
-
-    const form = new formidable.IncomingForm();
-   // form.uploadDiros. = os.tmpDir();//上传文件的保存路径
-    //form.uploadDir = os.tmpDir();//上传文件的保存路径
-    form.uploadDir = ".";//上传文件的保存路径
-    form.keepExtensions = true;//保存扩展名
-    form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
-    form.parse(req, (err, fields, files) => {
-        console.log(fields);
-        console.log(files);
-        if (err) {
-             throw err;
-        }
-    });
-
-    res.send("ok");
-};
-//
-// //  multiparty upload file
 // var uploadfile = function(req, res) {
 //     console.log("here");
 //
-//     var form = new multiparty.Form();
+//     // var upfile = req.files.upfile;
 //
-//     //设置编辑
-//     form.encoding = 'utf-8';
-//     //设置文件存储路径
-//     form.uploadDir = "upload/";
-//     //设置单文件大小限制
-//     form.maxFilesSize = 2 * 1024 * 1024;
-//
-//     form.parse(req, function (err, fields, files) {
-//         res.writeHead(200, {'content-type': 'text/plain'});
-//         res.write('received upload:\n\n');
-//         res.end(util.inspect({fields: fields, files: files}));
+//     const form = new formidable.IncomingForm();
+//    // form.uploadDiros. = os.tmpDir();//上传文件的保存路径
+//     //form.uploadDir = os.tmpDir();//上传文件的保存路径
+//     form.uploadDir = ".";//上传文件的保存路径
+//     form.keepExtensions = true;//保存扩展名
+//     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
+//     form.parse(req, (err, fields, files) => {
+//         console.log(fields);
+//         console.log(files);
+//         if (err) {
+//              throw err;
+//         }
 //     });
-//     //res.send("ok");
+//
+//     res.send("ok");
 // };
+//
+// //  multiparty upload file
+var uploadfile = function(req, res) {
+    console.log("here");
+
+    var form = new multiparty.Form();
+
+    //设置编辑
+    form.encoding = 'utf-8';
+    //设置文件存储路径
+    form.uploadDir = "upload/";
+    //设置单文件大小限制
+    form.maxFilesSize = 2 * 1024 * 1024;
+
+    form.parse(req, function (err, fields, files) {
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.write('received upload:\n\n');
+        res.end(util.inspect({fields: fields, files: files}));
+    });
+    //res.send("ok");
+};
 
 // //  multiparty upload file
 // var uploadfile = function(req, res) {

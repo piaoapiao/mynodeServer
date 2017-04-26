@@ -39,27 +39,27 @@ var isDefined = function(str) {
 }
 
 // //formidable Parse form and handle files and fields.
-// var uploadfile = function(req, res) {
-//     console.log("here");
-//
-//     // var upfile = req.files.upfile;
-//
-//     const form = new formidable.IncomingForm();
-//    // form.uploadDiros. = os.tmpDir();//上传文件的保存路径
-//     //form.uploadDir = os.tmpDir();//上传文件的保存路径
-//     form.uploadDir = ".";//上传文件的保存路径
-//     form.keepExtensions = true;//保存扩展名
-//     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
-//     form.parse(req, (err, fields, files) => {
-//         console.log(fields);
-//         console.log(files);
-//         if (err) {
-//              throw err;
-//         }
-//     });
-//
-//     res.send("ok");
-// };
+var uploadfile = function(req, res) {
+    console.log("here");
+
+    // var upfile = req.files.upfile;
+
+    const form = new formidable.IncomingForm();
+   // form.uploadDiros. = os.tmpDir();//上传文件的保存路径
+    //form.uploadDir = os.tmpDir();//上传文件的保存路径
+    form.uploadDir = ".";//上传文件的保存路径
+    form.keepExtensions = true;//保存扩展名
+    form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
+    form.parse(req, (err, fields, files) => {
+        console.log(fields);
+        console.log(files);
+        if (err) {
+             throw err;
+        }
+    });
+
+    res.send("ok");
+};
 //
 // //  multiparty upload file
 // var uploadfile = function(req, res) {
@@ -82,42 +82,42 @@ var isDefined = function(str) {
 //     //res.send("ok");
 // };
 
-//  multiparty upload file
-var uploadfile = function(req, res) {
-
-    var busboy = new Busboy({ headers: req.headers });
-
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-
-        console.log(__dirname);
-
-        console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
-
-      //  var saveTo = path.join(__dirname, filename);
-        var saveTo = path.join("./uploadfile", filename);   // . 指向 项目目录
-        console.log(saveTo)
-        file.pipe(fs.createWriteStream(saveTo));
-
-
-        // file.on('data', function(data) {
-        //     console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
-        // });
-        // file.on('end', function() {
-        //     console.log('File [' + fieldname + '] Finished');
-        // });
-    });
-    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-      //  console.log('Field [' + fieldname + ']: value: ' + val);
-          console.log('field');
-    });
-    busboy.on('finish', function() {
-        console.log('Done parsing form!');
-        res.send("upload ok");
-        //res.writeHead(303, { Connection: 'close', Location: '/' });
-        //res.end();
-    });
-    req.pipe(busboy);
-};
+// //  multiparty upload file
+// var uploadfile = function(req, res) {
+//
+//     var busboy = new Busboy({ headers: req.headers });
+//
+//     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+//
+//         console.log(__dirname);
+//
+//         console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+//
+//       //  var saveTo = path.join(__dirname, filename);
+//         var saveTo = path.join("./uploadfile", filename);   // . 指向 项目目录
+//         console.log(saveTo)
+//         file.pipe(fs.createWriteStream(saveTo));
+//
+//
+//         // file.on('data', function(data) {
+//         //     console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+//         // });
+//         // file.on('end', function() {
+//         //     console.log('File [' + fieldname + '] Finished');
+//         // });
+//     });
+//     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+//       //  console.log('Field [' + fieldname + ']: value: ' + val);
+//           console.log('field');
+//     });
+//     busboy.on('finish', function() {
+//         console.log('Done parsing form!');
+//         res.send("upload ok");
+//         //res.writeHead(303, { Connection: 'close', Location: '/' });
+//         //res.end();
+//     });
+//     req.pipe(busboy);
+// };
 
 
 

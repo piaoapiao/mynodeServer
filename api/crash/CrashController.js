@@ -5,7 +5,7 @@ var urlencode = require("urlencode");
 var querystring = require('querystring');
 
 var formidable = require('formidable')
-
+var winston = require('winston');
 
 
 
@@ -15,9 +15,13 @@ function saveCrashLog(req,res)
 
     // res.setHeader('Content-Type', 'application/json');
 
-    //res.send(req.body);
+    winston.log('info',  req.method.toUpperCase(),req.url,JSON.stringify(req.body));
 
-    res.send(req.query.userid);
+    // logger.error()
+
+    // res.send(req.body);
+
+   // res.send(req.query.userid);
 
     // var form = new formidable.IncomingForm();
     //

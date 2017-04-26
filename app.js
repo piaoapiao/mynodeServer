@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'));
 
-app.use(morgan('combined', {stream: accessLogStream}));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms', {stream: accessLogStream}));
 
 
 

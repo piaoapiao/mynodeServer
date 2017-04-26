@@ -9,7 +9,15 @@
     <script>
         $(document).ready(function(){
             $("button").click(function(){
-                $("p").hide();
+//                $("p").hide();
+                htmlobj=$.ajax({url:"http://localhost:3000/crash/saveCrashLog?userid=12356",async:false});
+//                console.log(htmlobj);
+//                alert("request");
+//                alert(htmlobj.responseText);
+                //document.getElementById("txtHint").innerHTML="";
+//                $("span").html(r
+
+                $("fistPassage").html(htmlobj);
             });
         });
     </script>
@@ -18,7 +26,7 @@
 <body>
 
 <h2>这是一个标题</h2>
-<p>这是一个段落。</p>
+<p id = "fistPassage">这是一个段落。</p>
 <p>这是另一个段落。</p>
 <button>点我</button>
 

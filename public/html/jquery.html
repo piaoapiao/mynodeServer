@@ -9,15 +9,20 @@
     <script>
         $(document).ready(function(){
             $("button").click(function(){
-//                $("p").hide();
-                htmlobj=$.ajax({url:"http://localhost:3000/crash/saveCrashLog?userid=12356",async:false});
+                $("p").html("修改成的内容");
+
+                // $("p").hide();
+                htmlobj = $.ajax({url:"http://192.168.35.6:3000/crash/saveCrashLog?userid=12356",async:false});
+                //$("p").html("修改成的内容");
+                $("p").html(htmlobj.responseText);
+//                $("p").html("修改成的内容2");
 //                console.log(htmlobj);
 //                alert("request");
 //                alert(htmlobj.responseText);
                 //document.getElementById("txtHint").innerHTML="";
 //                $("span").html(r
 
-                $("fistPassage").html(htmlobj);
+//                $("#fistPassage").html(htmlobj);
             });
         });
     </script>

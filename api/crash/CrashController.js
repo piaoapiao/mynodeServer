@@ -15,18 +15,18 @@ function saveCrashLog(req,res)
 
     // res.setHeader('Content-Type', 'application/json');
 
-    winston.add(winston.transports.File, {
-        filename: './log/error.log',
-        handleExceptions: true,
-        humanReadableUnhandledException: true
-    });
-    winston.log('info',  req.method.toUpperCase(),req.url,JSON.stringify(req.body));
+    // winston.add(winston.transports.File, {
+    //     filename: './log/error.log',
+    //     handleExceptions: true,
+    //     humanReadableUnhandledException: true
+    // });
+    // winston.log('info',  req.method.toUpperCase(),req.url,JSON.stringify(req.body));
 
     // logger.error()
 
     // res.send(req.body);
 
-   // res.send(req.query.userid);
+    res.send(req.query.userid);
 
     // var form = new formidable.IncomingForm();
     //

@@ -95,7 +95,7 @@ var uploadfile = function(req, res) {
         console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
 
       //  var saveTo = path.join(__dirname, filename);
-        var saveTo = path.join("./uploadfile", filename);   // . 指向 项目目录
+        var saveTo = path.join("./public/download", filename);   // . 指向 项目目录
         console.log(saveTo)
         file.pipe(fs.createWriteStream(saveTo));
 

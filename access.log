@@ -1,0 +1,9 @@
+GET / 200 170 - 342.996 ms
+GET /stylesheets/style.css 304 - - 3.395 ms
+GET / 304 - - 20.878 ms
+GET /stylesheets/style.css 304 - - 0.461 ms
+GET /public/foo.txt 404 1306 - 39.997 ms
+GET /stylesheets/style.css 304 - - 2.233 ms
+GET /public/app.js 404 1306 - 26.360 ms
+GET /stylesheets/style.css 304 - - 0.427 ms
+GET /public/app.js 404 1306 - 46.942 ms

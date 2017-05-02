@@ -13,9 +13,13 @@ var users = require('./routes/users');
 var fs = require('fs');
 var path = require('path');
 
+var serveIndex = require('serve-index');
+
 var app = express();
 
 app.use(morgan("short"));
+
+app.use('/public', serveIndex(__dirname, {'icons': true}))
 
 app.use(function (req, res, next) {
     // if (req.clientIp === '::1') { // local test, do mock
@@ -134,7 +138,7 @@ app.set('view engine', 'jade');
 
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'),{}));
 
 //   http://192.168.35.6:3000/images/snow.jpg  图片地址
 

@@ -171,6 +171,8 @@ app.use('/crash', require('./api/crash'));
 
 app.use('/fileupload', require("./api/upload"));
 
+app.use('/redirect', require("./api/redirect"));
+
 
 
 // catch 404 and forward to error handler

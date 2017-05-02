@@ -31,7 +31,15 @@ function redirect(req,res)
 
     //res.send(req.query.userid);
 
-    //res.location('http://baidu.com');
+    res.location('http://www.csdn.net');
+    res.statusCode = 302;
+    res.end('响应的内容');
+
+    //res.send("ok");
+
+    //res.location('back');
+
+    //res.location('crash/saveCrashLog');
 
    // res.redirect(302, 'http://baidu.com');
 
@@ -42,7 +50,7 @@ function redirect(req,res)
 
     //res.redirect(302, 'http://www.hnie.edu.cn');
 
-    res.redirect(302, 'http://www.taobao.com');
+    //res.redirect(302, 'http://www.taobao.com');
 
     //  http://localhost.charlesproxy.com:3000/redirect/redirect?id=888
 

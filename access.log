@@ -1,1 +1,4 @@
-GET /redirect/redirect?id=889 302 86 - 11.194 ms
+GET /redirect/redirect/?userid=1234544 302 - - 4.307 ms
+GET /redirect/redirect/?userid=1234544 302 - - 1.000 ms
+GET /redirect/redirect/?userid=1234544 302 - - 0.252 ms
+GET /redirect/redirect/?userid=12345445 302 - - 0.197 ms

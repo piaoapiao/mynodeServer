@@ -162,6 +162,9 @@ app.use(express.static(path.join(__dirname, 'public'),{}));
 //     }
 // }));
 
+var credentials = require('./credentials.js');
+app.use(require('cookie-parser')(credentials.cookieSecret));
+
 app.use('/', index);
 app.use('/users', users);
 

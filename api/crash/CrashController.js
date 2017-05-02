@@ -26,6 +26,10 @@ function saveCrashLog(req,res)
 
     // res.send(req.body);
 
+    // res.cookie('monster', 'nom nom');
+
+    res.cookie('signed_monster', 'nom nom', { signed: true });
+
     res.send(req.query.userid);
 
     // var form = new formidable.IncomingForm();

@@ -31,7 +31,12 @@ function redirect(req,res)
 
     //res.send(req.query.userid);
 
-    res.location('http://www.csdn.net');
+    //res.location('http://www.csdn.net');
+
+
+
+    res.location('../../crash/saveCrashLog');
+
     res.statusCode = 302;
     res.end('响应的内容');
 

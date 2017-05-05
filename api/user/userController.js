@@ -31,8 +31,8 @@ instance.defaults.headers.post['content-type'] = 'application/x-www-form-urlenco
 function login(req, res, next) {
 
     console.log("login");
-    //res.send("hello");
-    postUnifi(res);
+    res.send("hello");
+    //postUnifi(res);
 }
 
 function getHttpsGithub(res)

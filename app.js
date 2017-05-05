@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var csrf = require('csurf')
 
 // var upload = require('./app/upload');
 
@@ -15,7 +16,30 @@ var path = require('path');
 
 var serveIndex = require('serve-index');
 
+
+
+var cookieSession = require('cookie-session')
+
+// var  csurf =  require('csurf');
+//
+// app.use(csurf);
+// app.use(function(req, res, next){
+//     res.locals._csrfToken = req.csrfToken();
+//     next(); });
+
+// setup route middlewares
+
+// var csrf = require('csurf')
+// var csrfProtection = csrf({ cookie: true })
+
 var app = express();
+
+//app.use(cookieParser());
+
+var credentials = require('./credentials.js');
+
+
+app.use(require('cookie-parser')(credentials.cookieSecret));
 
 app.use(morgan("short"));
 
@@ -57,7 +81,31 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(cookieParser());
+//  app.use(cookieSession({
+//    name: 'session',
+//    keys: ['key1', 'key2']
+// }));
+
+
+ app.get('/',function (req, res) {
+     
+     res.cookie('smaster','go2',{signed:true});
+
+
+     console.log(req.cookies);
+     if(req.cookies.isVisit >0){
+            var visitCount= req.cookies.isVisit;
+            visitCount++;
+            res.cookie('isVisit', visitCount);
+            res.send('<p>第' + visitCount + req.signedCookies.smaster + '次来次页面</p>');
+     }
+     else{
+         req.cookies.isVisit = 1;
+         res.cookie('isVisit', req.cookies.isVisit);
+         res.send('欢迎第一次来这里');
+         console.log("Cookies: ",req.cookies);
+     }
+ })
 
 // app.use(function (req, res) {
 //     res.setHeader('Content-Type', 'text/plain')
@@ -136,8 +184,6 @@ app.set('view engine', 'jade');
 // }));
 
 
-
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'),{}));
 
 //   http://192.168.35.6:3000/images/snow.jpg  图片地址
@@ -162,8 +208,25 @@ app.use(express.static(path.join(__dirname, 'public'),{}));
 //     }
 // }));
 
-var credentials = require('./credentials.js');
-app.use(require('cookie-parser')(credentials.cookieSecret));
+
+
+
+
+
+
+
+// var session = require('express-session')
+//
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+// }))
+
+app.use(csrf({ cookie: true }))
+
+
 
 app.use('/', index);
 app.use('/users', users);
@@ -176,16 +239,34 @@ app.use('/fileupload', require("./api/upload"));
 
 app.use('/redirect', require("./api/redirect"));
 
+// app.get('/from', csrfProtection, function (req, res) {
+//     //pass the csrfToken to the view
+//     //res.render('send', { csrfToken: req.csrfToken() })
+//     res.send("gogo");
+//     //console.log(req.session.id);
+//     //res.send('you viewed this page ' +  req.session.id);
+// })
+
+app.get('/xxx', function (req, res) {
+    //pass the csrfToken to the view
+    //res.render('send', { csrfToken: req.csrfToken() })
+    res.send("gogo");
+    //console.log(req.session.id);
+    //res.send('you viewed this page ' +  req.session.id);
+})
+
+// app.get('/process', csrfProtection, function (req, res) {
+//     res.render('send', { csrfToken: req.csrfToken() })
+// })
+
+app.get('/process', function (req, res) {
+   // res.render('send', { csrfToken: req.csrfToken() })
+
+    res.send("token:" + req.csrfToken());
+})
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
-// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

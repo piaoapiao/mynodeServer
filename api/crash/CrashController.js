@@ -28,9 +28,33 @@ function saveCrashLog(req,res)
 
     // res.cookie('monster', 'nom nom');
 
-    res.cookie('signed_monster', 'nom nom', { signed: true });
+    // res.writeHead(200, {'Content-type' : 'text/html'});
 
-    res.send(req.query.userid);
+    // res.writeHead({
+    //     'Set-Cookie':'myCookie="type=ninja", "language=javascript";path="/";httpOnly=true;'
+    // });
+
+    // res.cookie('signed_monster', 'nom nom', { signed: true });
+
+
+    // res.writeHead(200, {
+    //     'Content-Type': 'text/plain',
+    //     'Set-Cookie': 'myCookie="type=ninja", "language=javascript";path="/"'
+    // });
+
+    res.cookie('isVisit', '0');
+
+    res.end('Homepage');
+
+    // var body = 'hello world1';
+    // res.send(body);
+
+
+
+
+
+
+   // res.send(req.query.userid);
 
     // var form = new formidable.IncomingForm();
     //

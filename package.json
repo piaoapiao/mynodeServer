@@ -29,6 +29,7 @@
     "request": "^2.81.0",
     "serve-favicon": "~2.3.2",
     "serve-index": "^1.8.0",
+    "session": "^0.1.0",
     "urlencode": "^1.1.0",
     "winston": "^2.3.1"
   }

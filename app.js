@@ -18,12 +18,6 @@ var serveIndex = require('serve-index');
 
 
 
-var cookieSession = require('cookie-session')
-
-// var  csurf =  require('csurf');
-//
-// app.use(csurf);
-// app.use(function(req, res, next){
 //     res.locals._csrfToken = req.csrfToken();
 //     next(); });
 
@@ -34,12 +28,49 @@ var cookieSession = require('cookie-session')
 
 var app = express();
 
-//app.use(cookieParser());
 
 var credentials = require('./credentials.js');
 
+app.use(cookieParser(credentials.cookieSecret));
 
-app.use(require('cookie-parser')(credentials.cookieSecret));
+
+var session = require('cookie-session');
+                                                                                 
+app.use(session({
+    secret:'12345',
+    name:'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.si
+    cookie:{maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过
+    resave:false,
+    saveUninitialized: true
+}))
+
+
+// 按照上面的解释，设置 session 的可选参数
+// app.use(session({
+//   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
+//   cookie: { maxAge: 60 * 1000 }
+// }));
+
+app.get('/sesssion', function (req, res) {
+    req.session.isVisit++;
+
+    req.session.name ="wangwangwangwangwangwangwangwangwangwang";
+
+    res.send(req.session.name);
+
+  // 检查 session 中的 isVisit 字段
+  // 如果存在则增加一次，否则为 session 设置 isVisit 字段，并初始化为 1。
+  // if(req.session.isVisit) {
+  //   req.session.isVisit++;
+  //   res.send('<p>第 ' + req.session.isVisit + '次来此页面</p>');
+  // } else {
+  //   req.session.isVisit = 1;
+  //   res.send("欢迎第一次来这里");
+  //   console.log(req.session);
+  // }
+});
+
+
 
 app.use(morgan("short"));
 
@@ -86,11 +117,11 @@ app.use(bodyParser.urlencoded({
 //    keys: ['key1', 'key2']
 // }));
 
+//app.set('trust proxy', 0)
 
  app.get('/',function (req, res) {
      
      res.cookie('smaster','go2',{signed:true});
-
 
      console.log(req.cookies);
      if(req.cookies.isVisit >0){
@@ -107,7 +138,49 @@ app.use(bodyParser.urlencoded({
      }
  })
 
-// app.use(function (req, res) {
+
+
+app.get('/awesome', function(req, res){
+
+    //console.log("awesome:" + req.session);
+    
+    //req.session.sessname = 'i am a sesion';
+
+    // req.cookies()
+    //
+    // res.send("You're Awesome. And the session expired time is: " + req.session.id);
+
+    // res.send(req.sessionID);
+    //
+
+    if(req.session.lastPage) {
+             console.log('Last page was: ' + req.session.lastPage + ".");
+         }
+         req.session.lastPage = '/awesome';
+         res.send("You're Awesome. And the session expired time is: " + req.session.cookie.maxAge);
+
+     // if(req.session.lastPage) {
+     //     console.log('Last page was: ' + req.session.lastPage + ".");
+     // }
+     // req.session.lastPage = '/awesome'; //每一次访问时，session对象的lastPage会自动的保存或更新内存中的session中去。
+     // res.send("You're Awesome. And the session expired time is: " + req.session.cookie.maxAge);
+ });
+
+
+
+
+
+
+
+// app.get('/home', function (req, res) {
+//
+//     var hour = 3600000
+//     req.session.cookie.expires = new Date(Date.now() + hour)
+//     req.session.cookie.maxAge = hour
+//
+// });
+
+ // app.use(function (req, res) {
 //     res.setHeader('Content-Type', 'text/plain')
 //     res.write('you posted:\n')
 //     res.end(JSON.stringify(req.body, null, 2))

@@ -1,6 +1,1 @@
-GET /crash/saveCrashLog 200 - - 11.946 ms
-GET /crash/saveCrashLog 200 - - 4.580 ms
-GET /crash/saveCrashLog 200 - - 1.577 ms
-GET /favicon.ico 404 24 - 2.346 ms
-GET /crash/saveCrashLog 200 - - 0.883 ms
-GET /crash/saveCrashLog 200 - - 1.043 ms
+GET /crash/saveCrashLog 200 3 - 10.347 ms

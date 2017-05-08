@@ -39,7 +39,8 @@ function shouldCompress (req, res) {
     //
     // // fallback to standard filter function
     // return compress.filter(req, res)
-    return true;
+   // return true;
+    return false;
 }
 
 app.use(compress({filter: shouldCompress}))

@@ -19,6 +19,10 @@ var serveIndex = require('serve-index');
 var compress = require('compression');
 var compressible = require('compressible')
 
+var responseTime = require('response-time')
+
+
+var errorhandler = require('errorhandler')
 
 //     res.locals._csrfToken = req.csrfToken();
 //     next(); });
@@ -28,7 +32,21 @@ var compressible = require('compressible')
 // var csrf = require('csurf')
 // var csrfProtection = csrf({ cookie: true })
 
+var methodOverride = require('methodOverride')
+
 var app = express();
+// app.use(responseTime())
+
+app.use(errorhandler())
+
+// overwrite HTTP method
+app.use(methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 
 function shouldCompress (req, res) {
@@ -39,8 +57,8 @@ function shouldCompress (req, res) {
     //
     // // fallback to standard filter function
     // return compress.filter(req, res)
-   // return true;
-    return false;
+    return true;
+    //return false;
 }
 
 app.use(compress({filter: shouldCompress}))

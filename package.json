@@ -15,6 +15,8 @@
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "body-parser": "~1.15.1",
     "busboy": "^0.2.14",
+    "compressible": "^2.0.10",
+    "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.1",
     "csurf": "^1.9.0",

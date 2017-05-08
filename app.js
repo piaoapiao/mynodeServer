@@ -16,6 +16,8 @@ var path = require('path');
 
 var serveIndex = require('serve-index');
 
+var compress = require('compression');
+var compressible = require('compressible')
 
 
 //     res.locals._csrfToken = req.csrfToken();
@@ -28,6 +30,23 @@ var serveIndex = require('serve-index');
 
 var app = express();
 
+
+function shouldCompress (req, res) {
+    // if (req.headers['x-no-compression']) {
+    //     // don't compress responses with this request header
+    //     return false
+    // }
+    //
+    // // fallback to standard filter function
+    // return compress.filter(req, res)
+    return true;
+}
+
+app.use(compress({filter: shouldCompress}))
+
+
+
+//app.use(compress());
 
 var credentials = require('./credentials.js');
 

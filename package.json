@@ -35,6 +35,7 @@
     "serve-favicon": "~2.3.2",
     "serve-index": "^1.8.0",
     "session": "^0.1.0",
+    "socket.io": "^1.7.4",
     "urlencode": "^1.1.0",
     "winston": "^2.3.1"
   }

@@ -32,21 +32,31 @@ var errorhandler = require('errorhandler')
 // var csrf = require('csurf')
 // var csrfProtection = csrf({ cookie: true })
 
-var methodOverride = require('methodOverride')
 
 var app = express();
 // app.use(responseTime())
 
-app.use(errorhandler())
+var server = require('http').createServer(app);
 
-// overwrite HTTP method
-app.use(methodOverride(function(req, res) {
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        var method = req.body._method
-        delete req.body._method
-        return method
-    }
-}))
+var io = require('socket.io')(server);
+
+var i = 6;
+
+var str = i.toString(16).toUpperCase()
+console.log(str.toString(16));
+
+var string = "d王王王王"
+//for (var i = 0; i < string.length; ++i) {
+    var c = string.charCodeAt(2);
+console.log(c.toString(16));
+
+io.on('connection', function(client){
+
+    client.on('event', function(data){
+        console.log(data);
+    });
+    client.on('disconnect', function(){});
+});
 
 
 function shouldCompress (req, res) {

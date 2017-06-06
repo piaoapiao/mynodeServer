@@ -82,15 +82,15 @@ var credentials = require('./credentials.js');
 app.use(cookieParser(credentials.cookieSecret));
 
 
-var session = require('cookie-session');
+// var session = require('cookie-session');
                                                                                  
-app.use(session({
-    secret:'12345',
-    name:'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.si
-    cookie:{maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过
-    resave:false,
-    saveUninitialized: true
-}))
+// app.use(session({
+//     secret:'12345',
+//     name:'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.si
+//     cookie:{maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过
+//     resave:false,
+//     saveUninitialized: true
+// }))
 
 
 // 按照上面的解释，设置 session 的可选参数
@@ -99,24 +99,24 @@ app.use(session({
 //   cookie: { maxAge: 60 * 1000 }
 // }));
 
-app.get('/sesssion', function (req, res) {
-    req.session.isVisit++;
+// app.get('/sesssion', function (req, res) {
+//     req.session.isVisit++;
 
-    req.session.name ="wangwangwangwangwangwangwangwangwangwang";
+//     req.session.name ="wangwangwangwangwangwangwangwangwangwang";
 
-    res.send(req.session.name);
+//     res.send(req.session.name);
 
-  // 检查 session 中的 isVisit 字段
-  // 如果存在则增加一次，否则为 session 设置 isVisit 字段，并初始化为 1。
-  // if(req.session.isVisit) {
-  //   req.session.isVisit++;
-  //   res.send('<p>第 ' + req.session.isVisit + '次来此页面</p>');
-  // } else {
-  //   req.session.isVisit = 1;
-  //   res.send("欢迎第一次来这里");
-  //   console.log(req.session);
-  // }
-});
+//   // 检查 session 中的 isVisit 字段
+//   // 如果存在则增加一次，否则为 session 设置 isVisit 字段，并初始化为 1。
+//   // if(req.session.isVisit) {
+//   //   req.session.isVisit++;
+//   //   res.send('<p>第 ' + req.session.isVisit + '次来此页面</p>');
+//   // } else {
+//   //   req.session.isVisit = 1;
+//   //   res.send("欢迎第一次来这里");
+//   //   console.log(req.session);
+//   // }
+// });
 
 
 
@@ -347,7 +347,7 @@ app.use(express.static('public'));
 //     cookie: { secure: true }
 // }))
 
-app.use(csrf({ cookie: true }))
+// app.use(csrf({ cookie: true }))
 
 
 

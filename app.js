@@ -122,7 +122,7 @@ app.get('/sesssion', function (req, res) {
 
 app.use(morgan("short"));
 
-app.use('/public', serveIndex(__dirname, {'icons': true}))
+//app.use('/public', serveIndex(__dirname, {'icons': true}))
 
 app.use(function (req, res, next) {
     // if (req.clientIp === '::1') { // local test, do mock
@@ -305,7 +305,9 @@ app.set('view engine', 'jade');
 // }));
 
 
-app.use(express.static(path.join(__dirname, 'public'),{}));
+app.use(express.static('public'));
+
+// app.use(express.static(path.join(__dirname, 'public'),{}));
 
 //   http://192.168.35.6:3000/images/snow.jpg  图片地址
 

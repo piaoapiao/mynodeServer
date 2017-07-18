@@ -129,10 +129,10 @@ var uploadfile = function(req, res) {
         console.log('Done parsing form!');
 
 
-        var downloadurl1 = "down address1:" + "http://oneccc.bid:3000/download/" + filename;
+        var downloadurl1 = "down address1:" + "http://oneccc.bid:3000/download/" + tmpFileName;
 
 
-        var downloadurl2 = "down address2:" + "http://oneccc.bid/" + filename;
+        var downloadurl2 = "down address2:" + "http://oneccc.bid/" + tmpFileName;
 
         res.send("upload ok" + "/n" + downloadurl1 +"/n" + downloadurl2);
 

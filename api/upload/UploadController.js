@@ -94,11 +94,11 @@ var uploadfile = function(req, res) {
 
         console.log(__dirname);
 
-        console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+        //console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
 
       //  var saveTo = path.join(__dirname, filename);
         var saveTo = path.join("./public/download", filename);   // . 指向 项目目录
-        console.log(saveTo)
+       // console.log(saveTo)
         file.pipe(fs.createWriteStream(saveTo));
 
         tmpFileName =  filename;
@@ -106,8 +106,9 @@ var uploadfile = function(req, res) {
 
 
 
-        var wwwPath = path.join("/var/www/html", filename);   // . 指向 项目目录
-        console.log(wwwPath)
+
+        //var wwwPath = path.join("/var/www/html", filename);   // . 指向 项目目录
+        //console.log(wwwPath)
         file.pipe(fs.createWriteStream(wwwPath));
 
 
@@ -133,7 +134,7 @@ var uploadfile = function(req, res) {
 
         var downloadurl2 = "down address2:" + "http://oneccc.bid/" + filename;
 
-        res.send("upload ok" + "/n" downloadurl1 +"/n" + downloadurl2);
+        res.send("upload ok" + "/n" + downloadurl1 +"/n" + downloadurl2);
 
 
         //res.writeHead(303, { Connection: 'close', Location: '/' });

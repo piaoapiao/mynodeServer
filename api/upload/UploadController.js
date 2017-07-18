@@ -100,6 +100,11 @@ var uploadfile = function(req, res) {
         file.pipe(fs.createWriteStream(saveTo));
 
 
+        var wwwPath = path.join("/var/www/html", filename);   // . 指向 项目目录
+        console.log(wwwPath)
+        file.pipe(fs.createWriteStream(wwwPath));
+
+
         // file.on('data', function(data) {
         //     console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
         // });

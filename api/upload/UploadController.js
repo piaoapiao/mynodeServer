@@ -88,6 +88,8 @@ var uploadfile = function(req, res) {
 
     var busboy = new Busboy({ headers: req.headers });
 
+    var tmpFileName  = "";
+
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
 
         console.log(__dirname);
@@ -99,16 +101,16 @@ var uploadfile = function(req, res) {
         console.log(saveTo)
         file.pipe(fs.createWriteStream(saveTo));
 
-        var downloadurl1 = "down address1:" + "http://oneccc.bid:3000/download/" + filename;
+        tmpFileName =  filename;
+
+
 
 
         var wwwPath = path.join("/var/www/html", filename);   // . 指向 项目目录
         console.log(wwwPath)
         file.pipe(fs.createWriteStream(wwwPath));
 
-        var downloadurl2 = "down address2:" + "http://oneccc.bid/" + filename;
 
-        res.send(downloadurl1 +"/n" + downloadurl2);
 
 
         // file.on('data', function(data) {
@@ -124,7 +126,16 @@ var uploadfile = function(req, res) {
     });
     busboy.on('finish', function() {
         console.log('Done parsing form!');
-        res.send("upload ok");
+
+
+        var downloadurl1 = "down address1:" + "http://oneccc.bid:3000/download/" + filename;
+
+
+        var downloadurl2 = "down address2:" + "http://oneccc.bid/" + filename;
+
+        res.send("upload ok" + "/n" downloadurl1 +"/n" + downloadurl2);
+
+
         //res.writeHead(303, { Connection: 'close', Location: '/' });
         //res.end();
     });

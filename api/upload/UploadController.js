@@ -107,7 +107,7 @@ var uploadfile = function(req, res) {
 
 
 
-        //var wwwPath = path.join("/var/www/html", filename);   // . 指向 项目目录
+        var wwwPath = path.join("/var/www/html", filename);   // . 指向 项目目录
         //console.log(wwwPath)
         file.pipe(fs.createWriteStream(wwwPath));
 
@@ -135,7 +135,7 @@ var uploadfile = function(req, res) {
         //var downloadurl2 = "down address2:" + "http://oneccc.bid/" + tmpFileName;
 
        // res.send("upload ok" + "/n" + downloadurl1 +"/n" + downloadurl2);
-        res.send("gog")
+        res.send("gog");
 
         //res.writeHead(303, { Connection: 'close', Location: '/' });
         //res.end();
